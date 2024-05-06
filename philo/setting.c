@@ -30,7 +30,9 @@ int setting_up(t_data *data, char **av, int ac)
     if (ac == 6)
         data->eating_nb = ft_atoi(av[5]);
     if (data->nb_philo < 1 || data->time_to_die < 1 || data->time_to_eat < 1
-        ||  data->time_to_sleep < 1)
+        ||  data->time_to_sleep < 1 || data->eating_nb < 1)
         return (1);
+    if (ac == 5)
+        data->eating_nb = 0;
     return (0);
 }
