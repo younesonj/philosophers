@@ -1,7 +1,7 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = philo.c checking_args.c setting.c
+SRCS = main.c setting.c
 
 OBJS = $(SRCS:.c=.o)
 
