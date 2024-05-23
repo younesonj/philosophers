@@ -49,6 +49,8 @@ struct s_philo
 
 int     check_args(int ac, char **av);
 int     setting_up(t_data *data, char **av, int ac);
+int 	setting_philos(t_data *data);
+int 	data_init(t_data *data);
 
 
 #endif

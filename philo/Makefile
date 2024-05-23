@@ -1,7 +1,7 @@
 NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c setting.c
+SRCS = main.c setting.c data_init.c
 
 OBJS = $(SRCS:.c=.o)
 
