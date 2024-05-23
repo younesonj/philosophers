@@ -21,6 +21,14 @@ typedef struct t_data{
 	// data
 	//int eat;
 	//size_t time;
+	size_t	time_start;
+	pthread_mutex_t	data_mutex; // ✅ avoid races while reading data
+	pthread_mutex_t	write_mutex;
+
+	int		all_phl_crt;
+	int		end;
+
+
 	t_fork *forks; // ✅
 	t_philo *philosophers; //✅
 

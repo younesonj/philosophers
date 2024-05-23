@@ -1,13 +1,5 @@
 #include "philo.h"
 
-// size_t	get_current_time(void)
-// {
-// 	struct timeval	time;
-
-// 	gettimeofday(&time, NULL);
-// 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-// }
-
 
 int data_init(t_data *data)
 {
@@ -17,6 +9,13 @@ int data_init(t_data *data)
     data->forks = malloc(data->nb_philo * sizeof(t_fork));
     if (!data->forks)
         return (1);
+    
+    pthread_mutex_init(&data->data_mutex ,NULL);
+    pthread_mutex_init(&data->write_mutex ,NULL);
+
+
+    data->all_phl_crt = 1;
+    data->end = 1;
 
     int i = 0;
     while (i < data->nb_philo)
