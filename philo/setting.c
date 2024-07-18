@@ -49,8 +49,12 @@ int setting_up(t_data *data, char **av, int ac)
     data->time_to_sleep = ft_atoi(av[4]);
     if (ac == 6)
         data->limit_meals = ft_atoi(av[5]);
+
     if (data->nb_philo < 1 || data->time_to_die < 1 || data->time_to_eat < 1
-        ||  data->time_to_sleep < 1)
+        ||  data->time_to_sleep < 1 || data->limit_meals < 1)
         return (1);
+
+    if (ac == 5)
+        data->limit_meals = -1;
     return (0);
 }

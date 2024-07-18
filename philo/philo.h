@@ -10,55 +10,52 @@
 typedef	struct s_fork t_fork;
 typedef struct s_philo t_philo;
 
+# define YES 1
+# define NO 0
+
 typedef struct t_data{
 	//args form inputs
-    int     nb_philo; //av[1] ✅
-    int     time_to_die; //av[2] ✅
-    int     time_to_eat; //av[3] ✅
-    int     time_to_sleep; //av[4] ✅
-    int     limit_meals; //  opt av[5] ✅
+    int     nb_philo;
+    int     time_to_die;
+    int     time_to_eat;
+    int     time_to_sleep;
+    int     limit_meals;
 
-	// data
-	//int eat;
-	//size_t time;
+
 	size_t	time_start;
-	pthread_mutex_t	data_mutex; // ✅ avoid races while reading data
-	pthread_mutex_t	write_mutex;
-
-	int		all_phl_crt;
 	int		end;
 
 
-	t_fork *forks; // ✅
-	t_philo *philosophers; //✅
+	t_fork *forks;
+	t_philo *philosophers;
 
 } t_data;
 
 
-struct s_fork{
-	int fork_id; //✅
-	pthread_mutex_t fork; //✅
-};
-
 
 struct s_philo
 {
-	int				philo_id; //✅
+	int				philo_id;
 	pthread_t		thread_id;
 	size_t			time_last_meal;
-	int				count_meals; //✅
-	int				full; //✅
-	t_data          *data; //✅
-	t_fork			*first_fork; //✅
-	t_fork			*second_fork; //✅
+	int				count_meals;
+	int				full;
+	t_fork			*first_fork;
+	t_fork			*second_fork;
+	t_data          *data;
+};
+
+
+struct s_fork{
+	int 			fork_id;
+	pthread_mutex_t fork;
 };
 
 
 
 int     check_args(int ac, char **av);
 int     setting_up(t_data *data, char **av, int ac);
-int 	setting_philos(t_data *data);
-int 	data_init(t_data *data);
+int     initialization(t_data *data);
 
 
 #endif
