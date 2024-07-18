@@ -117,6 +117,5 @@ int main (int ac, char **av)
         printf("nb_philo = %d | first_fork_id = %d | second_fork_id = %d\n", data.philosophers[i].philo_id, data.philosophers[i].first_fork->fork_id, data.philosophers[i].second_fork->fork_id);
         i++;
     }
-    
 
 }
