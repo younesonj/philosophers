@@ -6,56 +6,36 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/time.h>
-
-typedef	struct s_fork t_fork;
-typedef struct s_philo t_philo;
-
-# define YES 1
-# define NO 0
-
-typedef struct t_data{
-	//args form inputs
-    int     nb_philo;
-    int     time_to_die;
-    int     time_to_eat;
-    int     time_to_sleep;
-    int     limit_meals;
-
-
-	size_t	time_start;
-	int		end;
-
-
-	t_fork *forks;
-	t_philo *philosophers;
-
-} t_data;
+#include <stdbool.h>
 
 
 
-struct s_philo
-{
-	int				philo_id;
-	pthread_t		thread_id;
-	size_t			time_last_meal;
-	int				count_meals;
-	int				full;
-	t_fork			*first_fork;
-	t_fork			*second_fork;
-	t_data          *data;
-};
-
-
-struct s_fork{
-	int 			fork_id;
-	pthread_mutex_t fork;
-};
+typedef struct t_tracker{
+	size_t	time;
+	int		flag;
+} t_tracker;
 
 
 
-int     check_args(int ac, char **av);
-int     setting_up(t_data *data, char **av, int ac);
-int     initialization(t_data *data);
+typedef struct t_philo{
+	int		id;
+	int		nb_philos;
+	size_t	time_to_die;
+	size_t	time_to_eat;
+	size_t	time_sleep;
+
+} t_philo;
+
+// PARSE
+int			check_digit(char **strs);
+int			check_overflow(int ac, char **av);
+int 		ft_atoi(char *str);
+
+
+
+
+
+
 
 
 #endif

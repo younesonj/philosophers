@@ -1,121 +1,49 @@
 #include "philo.h"
 
-// size_t	get_current_time(void)
+
+size_t  ft_time(void)
+{
+	struct timeval	tv;
+    gettimeofday(&tv, NULL);
+    size_t time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+    return (time);
+}
+
+t_tracker *init_tracker(void)
+{
+    t_tracker *tracker = (t_tracker *)malloc(sizeof(t_tracker));
+    if (!tracker)
+        return (NULL);
+    tracker->flag = 0;
+    tracker->time = ft_time();
+    return (tracker);
+}
+
+
+
+
+// void    ft_simulation(t_tracker **tracker, t_philo **philos, int ac, char **av)
 // {
-// 	struct timeval	time;
+//     pthread_t           *threads = malloc(sizeof(pthread_t) * ft_atoi(av[1]));
+//     pthread_mutex_t     *forks = malloc(sizeof(pthread_mutex_t) * ft_atoi(av[1]));
 
-// 	gettimeofday(&time, NULL);
-// 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-// }
-
-// size_t  get_time(int d)
-// {
-//     struct timeval tv;
-
-//     gettimeofday(&tv, NULL);
-
-//     if (d == 1) //sec
-//         return (tv.tv_sec + (tv.tv_usec / 1000000));
-//     else if (d == 2) // ms
-//         return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-//     else if (d == 3) // micro
-//         return ((tv.tv_sec * 1000000) + tv.tv_usec);
-//     return (42);
-// }
-
-// int wait_threads_crtd(t_data   *data)
-// {
-//     int res;
-//     pthread_mutex_lock(&data->data_mutex);
-//     res = data->all_phl_crt;
-//     pthread_mutex_unlock(&data->data_mutex);
-//     return (res);
-// }
-
-// int is_finished(t_data *data)
-// {
-//     int res = 0;
-//     pthread_mutex_lock(&data->data_mutex);
-//     res = data->end;
-//     pthread_mutex_unlock(&data->data_mutex);
-//     return (res);
-// }
-
-// int check_is_finished(size_t usec, t_data *data)
-// {
-//     size_t  start = get_time(3);// micro-second
-
-//     while (/* condition */)
-//     {
-//         if (is_finished(data))
-//     }
-    
-// }
-
-// void    *routine(void   *data_philo)
-// {
-//     t_philo *philo;
-
-//     philo = (t_philo *)data_philo;
-    
-//     while (wait_threads_crtd(&philo->data) == 1)
-//         ;
-    
-
-//     while (is_finished(&philo->data) == 1)
-//     {
-//         if (philo->full == 0)
-//             break;
-//     }
-// }
-
-
-// int insert_philos(t_data *data)
-// {
 //     int i = 0;
-//     while (i < data->nb_philo)
-//     {
-//         if (pthread_create(&data->philosophers[i].thread_id, NULL, &routine
-//             , &data->philosophers[i]) != 0);
-//             return (write(1, "Error in pthread_create function", 32));
-        
-//     }
-
-//     data->time_start = get_time(2);
-
-//     pthread_mutex_lock(&data->data_mutex);
-//     data->all_phl_crt = 0;
-//     pthread_mutex_unlock(&data->data_mutex);
-
-
-
-//     i = 0;
-//     while (i < data->nb_philo)
-//     {
-//         if (pthread_join(data->philosophers[i].thread_id, NULL) != 0);
-//             return (write(1, "Error in pthread_create function", 32));
-//         i++;
-//     }
-
-
-        
+//     while ()
+//     {}
 // }
-
 
 int main (int ac, char **av)
 {
-    t_data      data;
+    (void)av;
+    if (ac < 5 || ac > 6 || check_digit(av) || check_overflow(ac, av))
+        return (write(1, "Error\n", 6), 1);
+    t_tracker *tracker = init_tracker();
+    if (!tracker)
+        return (1);
+    t_philo *philo;
+    // ft_simulation(&tracker, philo, ac, av);
 
-    if (check_args(ac, av) || setting_up(&data, av, ac)
-        || initialization(&data))
-        return (write (2, "Error\n", 6), 1);
 
 
-    int i = 0;
-    while (i < data.nb_philo)
-    {
-        printf("nb_philo = %d | first_fork_id = %d | second_fork_id = %d\n", data.philosophers[i].philo_id, data.philosophers[i].first_fork->fork_id, data.philosophers[i].second_fork->fork_id);
-        i++;
-    }
-
+    return (0);
 }
