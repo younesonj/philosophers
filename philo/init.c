@@ -1,7 +1,7 @@
 #include "philo.h"
 
 
-t_data *init_data(int ac, char **av)
+t_data *init_data(char **av)
 {
     t_data *data = (t_data *)malloc(sizeof(t_data));
     if (!data)
@@ -14,7 +14,6 @@ t_data *init_data(int ac, char **av)
     data->time_to_die = ft_atoi(av[2]);
     data->time_to_eat = ft_atoi(av[3]);
     data->time_to_sleep = ft_atoi(av[4]);
-    data->limit_meals = ft_limit_meals(ac, av);
     return (data);
 }
 
@@ -37,7 +36,7 @@ t_philo *ft_init_philo(t_data **data, pthread_mutex_t *forks, int i)
 
 
 
-pthread_mutex_t *ft_init_forks_and_philos(t_data **data, t_philo **philos)
+pthread_mutex_t *ft_init_forks_and_philos(t_data **data, t_philo **philos, int limit)
 {
     pthread_mutex_t     *forks;
     t_philo             *curr;
@@ -53,6 +52,7 @@ pthread_mutex_t *ft_init_forks_and_philos(t_data **data, t_philo **philos)
         curr = ft_init_philo(data, forks, i);
         if (!curr)
             return (NULL);
+        curr->limit_meals = limit;
         ft_insert_philo(philos, curr);
         i++;
     }

@@ -17,15 +17,16 @@ typedef struct t_data{
 	size_t				time_to_die;
 	size_t				time_to_eat;
 	size_t				time_to_sleep;
-	int					limit_meals;
 	pthread_mutex_t		philo_done;
 	pthread_mutex_t		check_died;
+
 } t_data;
 
 
 
 typedef struct t_philo{
 	int					id;
+	int					limit_meals;
 	size_t				first_eat;
 	pthread_mutex_t		*first_fork;
 	pthread_mutex_t		*second_fork;
@@ -48,8 +49,8 @@ void    			ft_insert_philo(t_philo **philos, t_philo *curr);
 
 
 // INIT
-pthread_mutex_t 	*ft_init_forks_and_philos(t_data **data, t_philo **philos);
-t_data 				*init_data(int ac, char **av);
+pthread_mutex_t 	*ft_init_forks_and_philos(t_data **data, t_philo **philos, int limit);
+t_data 				*init_data(char **av);
 
 
 
