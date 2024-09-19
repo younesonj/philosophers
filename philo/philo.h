@@ -6,7 +6,7 @@
 /*   By: younajja <younajja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:42:55 by younajja          #+#    #+#             */
-/*   Updated: 2024/09/18 11:47:18 by younajja         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:01:36 by younajja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int					ft_atoi(char *str);
 
 // UTILS
 size_t				ft_time(void);
-void				ft_usleep(size_t time);
+void				ft_usleep(size_t time, t_data *data);
 int					ft_limit_meals(int ac, char **av);
 int					ft_handle_cases(t_data *data);
 void				ft_insert_philo(t_philo **philos, t_philo *curr);
-int					ft_check_flag_mtx(t_philo *philo);
+int					ft_check_flag_mtx(t_data *data);
 void				check_and_print(t_philo *philo, char *str);
 
 // INIT

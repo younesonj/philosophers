@@ -6,7 +6,7 @@
 /*   By: younajja <younajja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:43:02 by younajja          #+#    #+#             */
-/*   Updated: 2024/09/18 12:00:04 by younajja         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:01:26 by younajja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ int	check_overflow(int ac, char **av)
 	return (0);
 }
 
-int	ft_check_flag_mtx(t_philo *philo)
+int	ft_check_flag_mtx(t_data *data)
 {
 	int	res;
 
-	pthread_mutex_lock(&philo->data->check_died);
-	res = philo->data->flag;
-	pthread_mutex_unlock(&philo->data->check_died);
+	pthread_mutex_lock(&data->check_died);
+	res = data->flag;
+	pthread_mutex_unlock(&data->check_died);
 	return (res);
 }
 
 void	check_and_print(t_philo *philo, char *str)
 {
-	if (ft_check_flag_mtx(philo))
+	if (ft_check_flag_mtx(philo->data))
 		return ;
 	printf("%zu %d %s\n", ft_time() - philo->data->time, philo->id, str);
 }

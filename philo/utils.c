@@ -6,7 +6,7 @@
 /*   By: younajja <younajja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:42:49 by younajja          #+#    #+#             */
-/*   Updated: 2024/09/18 12:01:56 by younajja         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:28:13 by younajja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,19 @@ size_t	ft_time(void)
 	return (time);
 }
 
-void	ft_usleep(size_t time)
+void	ft_usleep(size_t time, t_data *data)
 {
 	size_t	diff;
 
+	(void)data;
 	diff = ft_time();
 	while (1)
 	{
 		if (ft_time() - diff >= time)
 			break ;
 		usleep(50);
+		if (ft_check_flag_mtx(data))
+			return ;
 	}
 }
 
@@ -51,7 +54,7 @@ int	ft_handle_cases(t_data *data)
 	else
 	{
 		printf("0 1 has taken a fork\n");
-		ft_usleep(data->time_to_die);
+		ft_usleep(data->time_to_die, data);
 		printf("%zu 1 died\n", data->time_to_die);
 	}
 	return (1);
