@@ -6,7 +6,7 @@
 /*   By: younajja <younajja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:43:08 by younajja          #+#    #+#             */
-/*   Updated: 2024/09/19 12:01:03 by younajja         ###   ########.fr       */
+/*   Updated: 2024/09/21 07:17:34 by younajja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_routine_monitor(void *arg)
 	curr = philo;
 	while (!ft_check_flag_mtx(philo->data))
 	{
-		pthread_mutex_lock(&philo->eat_mutex);
+		pthread_mutex_lock(&curr->eat_mutex);
 		if (ft_time() - curr->first_eat > curr->data->time_to_die)
 		{
 			pthread_mutex_lock(&curr->data->check_died);
@@ -32,7 +32,7 @@ void	*ft_routine_monitor(void *arg)
 			pthread_mutex_unlock(&curr->data->check_died);
 			(usleep(2000), printf("%d %d died\n", time, philo->id));
 		}
-		pthread_mutex_unlock(&philo->eat_mutex);
+		pthread_mutex_unlock(&curr->eat_mutex);
 		curr = curr->next;
 		if (!curr)
 			curr = philo;
